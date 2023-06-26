@@ -1,0 +1,11 @@
+name: Generic
+
+on:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: 'test'
+    steps:
+      - run: echo "No test required"

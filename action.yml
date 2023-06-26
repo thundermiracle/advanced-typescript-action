@@ -1,0 +1,18 @@
+name: 'advanced-typescript-action'
+description: "your action's description"
+branding:
+  icon: 'bell'
+  color: 'blue'
+author: 'Your name or organization here'
+inputs:
+  milliseconds:
+    description: 'milliseconds to sleep'
+    required: true
+    default: 1000
+  token:
+    description: 'https://docs.github.com/en/actions/security-guides/automatic-token-authentication#about-the-github_token-secret'
+    required: false
+    default: ${{ github.token }}
+runs:
+  using: 'node16'
+  main: 'dist/index.js'

@@ -1,0 +1,8 @@
+{
+  "extends": "@web-configs/typescript/library.json",
+  "compilerOptions": {
+    "rootDir": ".",
+    "types": ["vitest/globals"]
+  },
+  "include": ["src", "__tests__", "*.ts"]
+}

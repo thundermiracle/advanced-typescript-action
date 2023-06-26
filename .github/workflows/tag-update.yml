@@ -1,0 +1,38 @@
+name: Tag Update
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  update_tag:
+    # only run when tag contains . (e.g. v1.2.3)
+    if: contains(github.ref, '.')
+    permissions:
+      contents: write
+      packages: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Get tag name
+        uses: actions/github-script@v6
+        id: tag
+        with:
+          result-encoding: string
+          script: |
+            const version = context.ref.split("/").pop();
+            const majorWithV = version.split(".").shift();
+            return majorWithV;
+
+      - name: Re-tag
+        run: |
+          newTag="${{ steps.tag.outputs.result }}"
+          # ignore error if tag does not exist
+          git tag -d $newTag || true
+          # delte remote tag
+          git push --delete origin $newTag || true
+          git tag $newTag ${{ github.sha }}
+          git push origin $newTag
