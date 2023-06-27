@@ -38,6 +38,12 @@ Furthermore, CI workflow `renovate-changesets.yml` will automatically push a com
 
 CI workflow `tag-update.yml` will automatically re-tag the latest commit with major version when `changesets` creates a tag. For example, if `changesets` creates a tag `v1.2.3`, `tag-update.yml` will remove the latest `v1` and re-tag the latest commit with `v1` where tag `v1.2.3` points to.
 
+## How to use
+
+Create a Personal access token with `repo` & `workflow` scope and add it to the repository secrets with name `PAT_GITHUB`.
+
+That's all! Now you can start to develop your Github Action.
+
 ## License
 
 The scripts and documentation in this project are released under the [MIT License](./LICENSE)
