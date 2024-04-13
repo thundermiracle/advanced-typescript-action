@@ -21,10 +21,10 @@
   "devDependencies": {
     "@changesets/changelog-github": "^0.5.0",
     "@changesets/cli": "^2.27.1",
-    "@swc/core": "^1.4.8",
+    "@swc/core": "^1.4.13",
     "@types/node": "^18.19.31",
     "@vercel/ncc": "^0.38.1",
-    "@vitest/coverage-v8": "^1.4.0",
+    "@vitest/coverage-v8": "^1.5.0",
     "@web-configs/eslint-plugin": "^0.5.2",
     "@web-configs/prettier": "^0.1.2",
     "@web-configs/typescript": "^0.2.2",
@@ -32,7 +32,7 @@
     "prettier": "^3.2.5",
     "tsup": "^7.2.0",
     "typescript": "^5.4.5",
-    "vitest": "^1.4.0"
+    "vitest": "^1.5.0"
   },
   "prettier": "@web-configs/prettier",
   "tsup": {
