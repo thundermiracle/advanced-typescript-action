@@ -22,7 +22,7 @@
     "@changesets/changelog-github": "^0.5.0",
     "@changesets/cli": "^2.27.7",
     "@swc/core": "^1.7.6",
-    "@types/node": "^18.19.43",
+    "@types/node": "^20.14.14",
     "@vercel/ncc": "^0.38.1",
     "@vitest/coverage-v8": "^1.6.0",
     "@web-configs/eslint-plugin": "^0.5.2",
