@@ -21,8 +21,8 @@
   "devDependencies": {
     "@changesets/changelog-github": "^0.5.0",
     "@changesets/cli": "^2.27.7",
-    "@swc/core": "^1.7.6",
-    "@types/node": "^18.19.43",
+    "@swc/core": "^1.7.22",
+    "@types/node": "^18.19.48",
     "@vercel/ncc": "^0.38.1",
     "@vitest/coverage-v8": "^2.0.5",
     "@web-configs/eslint-plugin": "^0.5.2",
