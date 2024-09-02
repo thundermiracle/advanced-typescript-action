@@ -24,7 +24,7 @@
     "@swc/core": "^1.7.6",
     "@types/node": "^18.19.43",
     "@vercel/ncc": "^0.38.1",
-    "@vitest/coverage-v8": "^1.6.0",
+    "@vitest/coverage-v8": "^2.0.5",
     "@web-configs/eslint-plugin": "^0.5.2",
     "@web-configs/prettier": "^0.1.2",
     "@web-configs/typescript": "^0.2.2",
@@ -32,7 +32,7 @@
     "prettier": "^3.3.3",
     "tsup": "^7.2.0",
     "typescript": "^5.5.4",
-    "vitest": "^1.6.0"
+    "vitest": "^2.0.5"
   },
   "prettier": "@web-configs/prettier",
   "tsup": {
