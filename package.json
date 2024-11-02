@@ -28,7 +28,7 @@
     "@web-configs/eslint-plugin": "^0.5.2",
     "@web-configs/prettier": "^0.1.2",
     "@web-configs/typescript": "^0.2.2",
-    "eslint": "^9.13.0",
+    "eslint": "^9.14.0",
     "prettier": "^3.3.3",
     "tsup": "^7.2.0",
     "typescript": "^5.6.3",
