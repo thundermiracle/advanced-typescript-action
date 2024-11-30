@@ -30,7 +30,7 @@
     "@web-configs/typescript": "^0.2.2",
     "eslint": "^9.16.0",
     "prettier": "^3.4.1",
-    "tsup": "^7.2.0",
+    "tsup": "^8.3.5",
     "typescript": "^5.7.2",
     "vitest": "^2.1.6"
   },
