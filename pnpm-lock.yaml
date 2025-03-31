@@ -17,11 +17,11 @@ devDependencies:
     specifier: ^2.28.1
     version: 2.28.1
   '@swc/core':
-    specifier: ^1.11.9
-    version: 1.11.9
+    specifier: ^1.11.13
+    version: 1.11.13
   '@types/node':
-    specifier: ^18.19.80
-    version: 18.19.80
+    specifier: ^18.19.84
+    version: 18.19.84
   '@vercel/ncc':
     specifier: ^0.38.3
     version: 0.38.3
@@ -30,7 +30,7 @@ devDependencies:
     version: 3.0.8(vitest@3.0.8)
   '@web-configs/eslint-plugin':
     specifier: ^0.5.2
-    version: 0.5.2(@types/node@18.19.80)(eslint@9.23.0)(prettier@3.5.3)(typescript@5.8.2)
+    version: 0.5.2(@types/node@18.19.84)(eslint@9.23.0)(prettier@3.5.3)(typescript@5.8.2)
   '@web-configs/prettier':
     specifier: ^0.1.2
     version: 0.1.2
@@ -45,13 +45,13 @@ devDependencies:
     version: 3.5.3
   tsup:
     specifier: ^7.2.0
-    version: 7.3.0(@swc/core@1.11.9)(typescript@5.8.2)
+    version: 7.3.0(@swc/core@1.11.13)(typescript@5.8.2)
   typescript:
     specifier: ^5.8.2
     version: 5.8.2
   vitest:
     specifier: ^3.0.8
-    version: 3.0.8(@types/node@18.19.80)
+    version: 3.0.8(@types/node@18.19.84)
 
 packages:
 
@@ -1091,7 +1091,7 @@ packages:
     resolution: {integrity: sha512-gIhjdJp/c2beaIWWIlsXdqXVRUz3r2BxBCpfz/F3JXHvSAQ1paMYjLH+maEATtENg+k5eLV7gA+9yPp762ieuw==}
     dev: true
 
-  /@graphql-eslint/eslint-plugin@3.20.1(@babel/core@7.24.3)(@types/node@18.19.80)(graphql@15.8.0):
+  /@graphql-eslint/eslint-plugin@3.20.1(@babel/core@7.24.3)(@types/node@18.19.84)(graphql@15.8.0):
     resolution: {integrity: sha512-RbwVlz1gcYG62sECR1u0XqMh8w5e5XMCCZoMvPQ3nJzEBCTfXLGX727GBoRmSvY1x4gJmqNZ1lsOX7lZY14RIw==}
     engines: {node: '>=12'}
     peerDependencies:
@@ -1105,7 +1105,7 @@ packages:
       debug: 4.4.0
       fast-glob: 3.2.12
       graphql: 15.8.0
-      graphql-config: 4.4.1(@types/node@18.19.80)(graphql@15.8.0)
+      graphql-config: 4.4.1(@types/node@18.19.84)(graphql@15.8.0)
       graphql-depth-limit: 1.1.0(graphql@15.8.0)
       lodash.lowercase: 4.3.0
       tslib: 2.5.0
@@ -1181,7 +1181,7 @@ packages:
       - utf-8-validate
     dev: true
 
-  /@graphql-tools/executor-http@0.0.7(@types/node@18.19.80)(graphql@15.8.0):
+  /@graphql-tools/executor-http@0.0.7(@types/node@18.19.84)(graphql@15.8.0):
     resolution: {integrity: sha512-g0NV4HVZVABsylk6SIA/gfjQbMIsy3NjZYW0k0JZmTcp9698J37uG50GZC2mKe0F8pIlDvPLvrPloqdKGX3ZAA==}
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
@@ -1192,7 +1192,7 @@ packages:
       dset: 3.1.2
       extract-files: 11.0.0
       graphql: 15.8.0
-      meros: 1.2.1(@types/node@18.19.80)
+      meros: 1.2.1(@types/node@18.19.84)
       tslib: 2.5.0
       value-or-promise: 1.0.11
     transitivePeerDependencies:
@@ -1316,7 +1316,7 @@ packages:
       value-or-promise: 1.0.11
     dev: true
 
-  /@graphql-tools/url-loader@7.16.26(@types/node@18.19.80)(graphql@15.8.0):
+  /@graphql-tools/url-loader@7.16.26(@types/node@18.19.84)(graphql@15.8.0):
     resolution: {integrity: sha512-mrbFhShlthSdvMD3GPeKYxUt54CBUteN0eR6WgJJSXibycTSA6h0LAn6iyCAg+uUsBP/KR6GcjvQHifl00Q7rQ==}
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
@@ -1324,7 +1324,7 @@ packages:
       '@ardatan/sync-fetch': 0.0.1
       '@graphql-tools/delegate': 9.0.20(graphql@15.8.0)
       '@graphql-tools/executor-graphql-ws': 0.0.5(graphql@15.8.0)
-      '@graphql-tools/executor-http': 0.0.7(@types/node@18.19.80)(graphql@15.8.0)
+      '@graphql-tools/executor-http': 0.0.7(@types/node@18.19.84)(graphql@15.8.0)
       '@graphql-tools/executor-legacy-ws': 0.0.5(graphql@15.8.0)
       '@graphql-tools/utils': 9.1.3(graphql@15.8.0)
       '@graphql-tools/wrap': 9.2.21(graphql@15.8.0)
@@ -1640,8 +1640,8 @@ packages:
     dev: true
     optional: true
 
-  /@swc/core-darwin-arm64@1.11.9:
-    resolution: {integrity: sha512-moqbPCWG6SHiDMENTDYsEQJ0bFustbLtrdbDbdjnijSyhCyIcm9zKowmovE6MF8JBdOwmLxbuN1Yarq6CrPNlw==}
+  /@swc/core-darwin-arm64@1.11.13:
+    resolution: {integrity: sha512-loSERhLaQ9XDS+5Kdx8cLe2tM1G0HLit8MfehipAcsdctpo79zrRlkW34elOf3tQoVPKUItV0b/rTuhjj8NtHg==}
     engines: {node: '>=10'}
     cpu: [arm64]
     os: [darwin]
@@ -1649,8 +1649,8 @@ packages:
     dev: true
     optional: true
 
-  /@swc/core-darwin-x64@1.11.9:
-    resolution: {integrity: sha512-/lgMo5l9q6y3jjLM3v30y6SBvuuyLsM/K94hv3hPvDf91N+YlZLw4D7KY0Qknfhj6WytoAcjOIDU6xwBRPyUWg==}
+  /@swc/core-darwin-x64@1.11.13:
+    resolution: {integrity: sha512-uSA4UwgsDCIysUPfPS8OrQTH2h9spO7IYFd+1NB6dJlVGUuR6jLKuMBOP1IeLeax4cGHayvkcwSJ3OvxHwgcZQ==}
     engines: {node: '>=10'}
     cpu: [x64]
     os: [darwin]
@@ -1658,8 +1658,8 @@ packages:
     dev: true
     optional: true
 
-  /@swc/core-linux-arm-gnueabihf@1.11.9:
-    resolution: {integrity: sha512-7bL6z/63If11IpBElQRozIGRadiy6rt3DoUyfGuFIFQKxtnZxzHuLxm1/wrCAGN9iAZxrpHxHP0VbPQvr6Mcjg==}
+  /@swc/core-linux-arm-gnueabihf@1.11.13:
+    resolution: {integrity: sha512-boVtyJzS8g30iQfe8Q46W5QE/cmhKRln/7NMz/5sBP/am2Lce9NL0d05NnFwEWJp1e2AMGHFOdRr3Xg1cDiPKw==}
     engines: {node: '>=10'}
     cpu: [arm]
     os: [linux]
@@ -1667,8 +1667,8 @@ packages:
     dev: true
     optional: true
 
-  /@swc/core-linux-arm64-gnu@1.11.9:
-    resolution: {integrity: sha512-9ArpxjrNbyFTr7gG+toiGbbK2mfS+X97GIruBKPsD8CJH/yJlMknBsX3lfy9h/L119zYVnFBmZDnwsv5yW8/cw==}
+  /@swc/core-linux-arm64-gnu@1.11.13:
+    resolution: {integrity: sha512-+IK0jZ84zHUaKtwpV+T+wT0qIUBnK9v2xXD03vARubKF+eUqCsIvcVHXmLpFuap62dClMrhCiwW10X3RbXNlHw==}
     engines: {node: '>=10'}
     cpu: [arm64]
     os: [linux]
@@ -1676,8 +1676,8 @@ packages:
     dev: true
     optional: true
 
-  /@swc/core-linux-arm64-musl@1.11.9:
-    resolution: {integrity: sha512-UOnunJWu7T7oNkBr4DLMwXXbldjiwi+JxmqBKrD2+BNiHGu6P5VpqDHiTGuWuLrda0TcTmeNE6gzlIVOVBo/vw==}
+  /@swc/core-linux-arm64-musl@1.11.13:
+    resolution: {integrity: sha512-+ukuB8RHD5BHPCUjQwuLP98z+VRfu+NkKQVBcLJGgp0/+w7y0IkaxLY/aKmrAS5ofCNEGqKL+AOVyRpX1aw+XA==}
     engines: {node: '>=10'}
     cpu: [arm64]
     os: [linux]
@@ -1685,8 +1685,8 @@ packages:
     dev: true
     optional: true
 
-  /@swc/core-linux-x64-gnu@1.11.9:
-    resolution: {integrity: sha512-HAqmCkNoNhRusBqSokyylXKsLJ/dr3dnMgBERdUrCIh47L8CKR2qEFUP6FI05sHVB85403ctWnfzBYblcarpqg==}
+  /@swc/core-linux-x64-gnu@1.11.13:
+    resolution: {integrity: sha512-q9H3WI3U3dfJ34tdv60zc8oTuWvSd5fOxytyAO9Pc5M82Hic3jjWaf2xBekUg07ubnMZpyfnv+MlD+EbUI3Llw==}
     engines: {node: '>=10'}
     cpu: [x64]
     os: [linux]
@@ -1694,8 +1694,8 @@ packages:
     dev: true
     optional: true
 
-  /@swc/core-linux-x64-musl@1.11.9:
-    resolution: {integrity: sha512-THwUT2g2qSWUxhi3NGRCEdmh/q7WKl3d5jcN9mz/4jum76Tb46LB9p3oOVPBIcfnFQ9OaddExjCwLoUl0ju2pA==}
+  /@swc/core-linux-x64-musl@1.11.13:
+    resolution: {integrity: sha512-9aaZnnq2pLdTbAzTSzy/q8dr7Woy3aYIcQISmw1+Q2/xHJg5y80ZzbWSWKYca/hKonDMjIbGR6dp299I5J0aeA==}
     engines: {node: '>=10'}
     cpu: [x64]
     os: [linux]
@@ -1703,8 +1703,8 @@ packages:
     dev: true
     optional: true
 
-  /@swc/core-win32-arm64-msvc@1.11.9:
-    resolution: {integrity: sha512-r4SGD9lR0MM9HSIsQ72BEL3Za3XsuVj+govuXQTlK0mty5gih4L+Qgfnb9PmhjFakK3F63gZyyEr2y8Fj0mN6Q==}
+  /@swc/core-win32-arm64-msvc@1.11.13:
+    resolution: {integrity: sha512-n3QZmDewkHANcoHvtwvA6yJbmS4XJf0MBMmwLZoKDZ2dOnC9D/jHiXw7JOohEuzYcpLoL5tgbqmjxa3XNo9Oow==}
     engines: {node: '>=10'}
     cpu: [arm64]
     os: [win32]
@@ -1712,8 +1712,8 @@ packages:
     dev: true
     optional: true
 
-  /@swc/core-win32-ia32-msvc@1.11.9:
-    resolution: {integrity: sha512-jrEh6MDSnhwfpjRlSWd2Bk8pS5EjreQD1YbkNcnXviQf3+H0wSPmeVSktZyoIdkxAuc2suFx8mj7Yja2UXAgUg==}
+  /@swc/core-win32-ia32-msvc@1.11.13:
+    resolution: {integrity: sha512-wM+Nt4lc6YSJFthCx3W2dz0EwFNf++j0/2TQ0Js9QLJuIxUQAgukhNDVCDdq8TNcT0zuA399ALYbvj5lfIqG6g==}
     engines: {node: '>=10'}
     cpu: [ia32]
     os: [win32]
@@ -1721,8 +1721,8 @@ packages:
     dev: true
     optional: true
 
-  /@swc/core-win32-x64-msvc@1.11.9:
-    resolution: {integrity: sha512-oAwuhzr+1Bmb4As2wa3k57/WPJeyVEYRQelwEMYjPgi/h6TH+Y69jQAgKOd+ec1Yl8L5nkWTZMVA/dKDac1bAQ==}
+  /@swc/core-win32-x64-msvc@1.11.13:
+    resolution: {integrity: sha512-+X5/uW3s1L5gK7wAo0E27YaAoidJDo51dnfKSfU7gF3mlEUuWH8H1bAy5OTt2mU4eXtfsdUMEVXSwhDlLtQkuA==}
     engines: {node: '>=10'}
     cpu: [x64]
     os: [win32]
@@ -1730,8 +1730,8 @@ packages:
     dev: true
     optional: true
 
-  /@swc/core@1.11.9:
-    resolution: {integrity: sha512-4UQ66FwTkFDr+UzYzRNKQyHMScOrc4zJbTJHyK6dP1yVMrxi5sl0FTzNKiqoYvRZ7j8TAYgtYvvuPSW/XXvp5g==}
+  /@swc/core@1.11.13:
+    resolution: {integrity: sha512-9BXdYz12Wl0zWmZ80PvtjBWeg2ncwJ9L5WJzjhN6yUTZWEV/AwAdVdJnIEp4pro3WyKmAaMxcVOSbhuuOZco5g==}
     engines: {node: '>=10'}
     requiresBuild: true
     peerDependencies:
@@ -1743,16 +1743,16 @@ packages:
       '@swc/counter': 0.1.3
       '@swc/types': 0.1.19
     optionalDependencies:
-      '@swc/core-darwin-arm64': 1.11.9
-      '@swc/core-darwin-x64': 1.11.9
-      '@swc/core-linux-arm-gnueabihf': 1.11.9
-      '@swc/core-linux-arm64-gnu': 1.11.9
-      '@swc/core-linux-arm64-musl': 1.11.9
-      '@swc/core-linux-x64-gnu': 1.11.9
-      '@swc/core-linux-x64-musl': 1.11.9
-      '@swc/core-win32-arm64-msvc': 1.11.9
-      '@swc/core-win32-ia32-msvc': 1.11.9
-      '@swc/core-win32-x64-msvc': 1.11.9
+      '@swc/core-darwin-arm64': 1.11.13
+      '@swc/core-darwin-x64': 1.11.13
+      '@swc/core-linux-arm-gnueabihf': 1.11.13
+      '@swc/core-linux-arm64-gnu': 1.11.13
+      '@swc/core-linux-arm64-musl': 1.11.13
+      '@swc/core-linux-x64-gnu': 1.11.13
+      '@swc/core-linux-x64-musl': 1.11.13
+      '@swc/core-win32-arm64-msvc': 1.11.13
+      '@swc/core-win32-ia32-msvc': 1.11.13
+      '@swc/core-win32-x64-msvc': 1.11.13
     dev: true
 
   /@swc/counter@0.1.3:
@@ -1785,8 +1785,8 @@ packages:
     resolution: {integrity: sha512-J8xLz7q2OFulZ2cyGTLE1TbbZcjpno7FaN6zdJNrgAdrJ+DZzh/uFR6YrTb4C+nXakvud8Q4+rbhoIWlYQbUFQ==}
     dev: true
 
-  /@types/node@18.19.80:
-    resolution: {integrity: sha512-kEWeMwMeIvxYkeg1gTc01awpwLbfMRZXdIhwRcakd/KlK53jmRC26LqcbIt7fnAQTu5GzlnWmzA3H6+l1u6xxQ==}
+  /@types/node@18.19.84:
+    resolution: {integrity: sha512-ACYy2HGcZPHxEeWTqowTF7dhXN+JU1o7Gr4b41klnn6pj2LD6rsiGqSZojMdk1Jh2ys3m76ap+ae1vvE4+5+vg==}
     dependencies:
       undici-types: 5.26.5
     dev: true
@@ -1798,7 +1798,7 @@ packages:
   /@types/ws@8.5.3:
     resolution: {integrity: sha512-6YOoWjruKj1uLf3INHH7D3qTXwFfEsg1kf3c0uDdSBJwfa/llkwIjrAGV7j7mVgGNbzTQ3HiHKKDXl6bJPD97w==}
     dependencies:
-      '@types/node': 18.19.80
+      '@types/node': 18.19.84
     dev: true
 
   /@typescript-eslint/eslint-plugin@6.21.0(@typescript-eslint/parser@6.21.0)(eslint@9.23.0)(typescript@5.8.2):
@@ -2153,7 +2153,7 @@ packages:
       std-env: 3.8.0
       test-exclude: 7.0.1
       tinyrainbow: 2.0.0
-      vitest: 3.0.8(@types/node@18.19.80)
+      vitest: 3.0.8(@types/node@18.19.84)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -2181,7 +2181,7 @@ packages:
       '@vitest/spy': 3.0.8
       estree-walker: 3.0.3
       magic-string: 0.30.17
-      vite: 5.2.2(@types/node@18.19.80)
+      vite: 5.2.2(@types/node@18.19.84)
     dev: true
 
   /@vitest/pretty-format@3.0.8:
@@ -2219,7 +2219,7 @@ packages:
       tinyrainbow: 2.0.0
     dev: true
 
-  /@web-configs/eslint-plugin@0.5.2(@types/node@18.19.80)(eslint@9.23.0)(prettier@3.5.3)(typescript@5.8.2):
+  /@web-configs/eslint-plugin@0.5.2(@types/node@18.19.84)(eslint@9.23.0)(prettier@3.5.3)(typescript@5.8.2):
     resolution: {integrity: sha512-LQaboCtt9B4RfqmpN7MAkcwuWLt87WYfDvAslJJHl+wMb46S+PdD5VsRj683S5S2804/pi6UMcuU+yx8slzvAw==}
     peerDependencies:
       eslint: ^8.46.0
@@ -2227,7 +2227,7 @@ packages:
       '@babel/core': 7.24.3
       '@babel/eslint-parser': 7.24.1(@babel/core@7.24.3)(eslint@9.23.0)
       '@babel/eslint-plugin': 7.23.5(@babel/eslint-parser@7.24.1)(eslint@9.23.0)
-      '@graphql-eslint/eslint-plugin': 3.20.1(@babel/core@7.24.3)(@types/node@18.19.80)(graphql@15.8.0)
+      '@graphql-eslint/eslint-plugin': 3.20.1(@babel/core@7.24.3)(@types/node@18.19.84)(graphql@15.8.0)
       '@typescript-eslint/eslint-plugin': 6.21.0(@typescript-eslint/parser@6.21.0)(eslint@9.23.0)(typescript@5.8.2)
       '@typescript-eslint/parser': 6.21.0(eslint@9.23.0)(typescript@5.8.2)
       change-case: 4.1.2
@@ -4080,7 +4080,7 @@ packages:
     resolution: {integrity: sha512-EtKwoO6kxCL9WO5xipiHTZlSzBm7WLT627TqC/uVRd0HKmq8NXyebnNYxDoBi7wt8eTWrUrKXCOVaFq9x1kgag==}
     dev: true
 
-  /graphql-config@4.4.1(@types/node@18.19.80)(graphql@15.8.0):
+  /graphql-config@4.4.1(@types/node@18.19.84)(graphql@15.8.0):
     resolution: {integrity: sha512-B8wlvfBHZ5WnI4IiuQZRqql6s+CKz7S+xpUeTb28Z8nRBi8tH9ChEBgT5FnTyE05PUhHlrS2jK9ICJ4YBl9OtQ==}
     engines: {node: '>= 10.0.0'}
     peerDependencies:
@@ -4097,7 +4097,7 @@ packages:
       '@graphql-tools/json-file-loader': 7.4.14(graphql@15.8.0)
       '@graphql-tools/load': 7.8.8(graphql@15.8.0)
       '@graphql-tools/merge': 8.3.14(graphql@15.8.0)
-      '@graphql-tools/url-loader': 7.16.26(@types/node@18.19.80)(graphql@15.8.0)
+      '@graphql-tools/url-loader': 7.16.26(@types/node@18.19.84)(graphql@15.8.0)
       '@graphql-tools/utils': 9.1.3(graphql@15.8.0)
       cosmiconfig: 8.0.0
       graphql: 15.8.0
@@ -4743,7 +4743,7 @@ packages:
     engines: {node: '>= 8'}
     dev: true
 
-  /meros@1.2.1(@types/node@18.19.80):
+  /meros@1.2.1(@types/node@18.19.84):
     resolution: {integrity: sha512-R2f/jxYqCAGI19KhAvaxSOxALBMkaXWH2a7rOyqQw+ZmizX5bKkEYWLzdhC+U82ZVVPVp6MCXe3EkVligh+12g==}
     engines: {node: '>=13'}
     peerDependencies:
@@ -4752,7 +4752,7 @@ packages:
       '@types/node':
         optional: true
     dependencies:
-      '@types/node': 18.19.80
+      '@types/node': 18.19.84
     dev: true
 
   /micromatch@4.0.8:
@@ -5783,7 +5783,7 @@ packages:
     resolution: {integrity: sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==}
     dev: true
 
-  /tsup@7.3.0(@swc/core@1.11.9)(typescript@5.8.2):
+  /tsup@7.3.0(@swc/core@1.11.13)(typescript@5.8.2):
     resolution: {integrity: sha512-Ja1eaSRrE+QarmATlNO5fse2aOACYMBX+IZRKy1T+gpyH+jXgRrl5l4nHIQJQ1DoDgEjHDTw8cpE085UdBZuWQ==}
     engines: {node: '>=18'}
     deprecated: Breaking node 16
@@ -5800,7 +5800,7 @@ packages:
       typescript:
         optional: true
     dependencies:
-      '@swc/core': 1.11.9
+      '@swc/core': 1.11.13
       bundle-require: 4.0.1(esbuild@0.19.12)
       cac: 6.7.14
       chokidar: 3.5.3
@@ -5970,7 +5970,7 @@ packages:
     engines: {node: '>=12'}
     dev: true
 
-  /vite-node@3.0.8(@types/node@18.19.80):
+  /vite-node@3.0.8(@types/node@18.19.84):
     resolution: {integrity: sha512-6PhR4H9VGlcwXZ+KWCdMqbtG649xCPZqfI9j2PsK1FcXgEzro5bGHcVKFCTqPLaNKZES8Evqv4LwvZARsq5qlg==}
     engines: {node: ^18.0.0 || ^20.0.0 || >=22.0.0}
     hasBin: true
@@ -5979,7 +5979,7 @@ packages:
       debug: 4.4.0
       es-module-lexer: 1.6.0
       pathe: 2.0.3
-      vite: 5.2.2(@types/node@18.19.80)
+      vite: 5.2.2(@types/node@18.19.84)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -5991,7 +5991,7 @@ packages:
       - terser
     dev: true
 
-  /vite@5.2.2(@types/node@18.19.80):
+  /vite@5.2.2(@types/node@18.19.84):
     resolution: {integrity: sha512-FWZbz0oSdLq5snUI0b6sULbz58iXFXdvkZfZWR/F0ZJuKTSPO7v72QPXt6KqYeMFb0yytNp6kZosxJ96Nr/wDQ==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
@@ -6019,7 +6019,7 @@ packages:
       terser:
         optional: true
     dependencies:
-      '@types/node': 18.19.80
+      '@types/node': 18.19.84
       esbuild: 0.20.2
       postcss: 8.4.38
       rollup: 4.13.0
@@ -6027,7 +6027,7 @@ packages:
       fsevents: 2.3.3
     dev: true
 
-  /vitest@3.0.8(@types/node@18.19.80):
+  /vitest@3.0.8(@types/node@18.19.84):
     resolution: {integrity: sha512-dfqAsNqRGUc8hB9OVR2P0w8PZPEckti2+5rdZip0WIz9WW0MnImJ8XiR61QhqLa92EQzKP2uPkzenKOAHyEIbA==}
     engines: {node: ^18.0.0 || ^20.0.0 || >=22.0.0}
     hasBin: true
@@ -6055,7 +6055,7 @@ packages:
       jsdom:
         optional: true
     dependencies:
-      '@types/node': 18.19.80
+      '@types/node': 18.19.84
       '@vitest/expect': 3.0.8
       '@vitest/mocker': 3.0.8(vite@5.2.2)
       '@vitest/pretty-format': 3.0.8
@@ -6073,8 +6073,8 @@ packages:
       tinyexec: 0.3.2
       tinypool: 1.0.2
       tinyrainbow: 2.0.0
-      vite: 5.2.2(@types/node@18.19.80)
-      vite-node: 3.0.8(@types/node@18.19.80)
+      vite: 5.2.2(@types/node@18.19.84)
+      vite-node: 3.0.8(@types/node@18.19.84)
       why-is-node-running: 2.3.0
     transitivePeerDependencies:
       - less
