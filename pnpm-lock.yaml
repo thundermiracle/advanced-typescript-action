@@ -20,7 +20,7 @@ devDependencies:
     specifier: ^1.11.16
     version: 1.11.16
   '@types/node':
-    specifier: ^18.19.85
+    specifier: ^18.19.86
     version: 18.19.86
   '@vercel/ncc':
     specifier: ^0.38.3
