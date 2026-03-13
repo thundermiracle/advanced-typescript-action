@@ -16,7 +16,7 @@
     "cs:tag": "changeset tag"
   },
   "dependencies": {
-    "@actions/core": "^1.11.1"
+    "@actions/core": "^3.0.0"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.5.2",
