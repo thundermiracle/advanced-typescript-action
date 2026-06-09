@@ -19,11 +19,11 @@
     "@actions/core": "^1.11.1"
   },
   "devDependencies": {
-    "@changesets/changelog-github": "^0.6.0",
+    "@changesets/changelog-github": "^0.7.0",
     "@changesets/cli": "^2.31.0",
-    "@swc/core": "^1.15.33",
+    "@swc/core": "^1.15.41",
     "@types/node": "^18.19.130",
-    "@vercel/ncc": "^0.38.4",
+    "@vercel/ncc": "^0.44.0",
     "@vitest/coverage-v8": "^4.1.8",
     "@web-configs/eslint-plugin": "^0.5.2",
     "@web-configs/prettier": "^0.1.2",
