@@ -10,7 +10,9 @@ A **template** for building GitHub Actions in TypeScript. The value is the autom
 
 ## Commands
 
-Package manager is pnpm 8.15.9 via corepack (`packageManager` in package.json); Node is pinned to 18.16.0 in `.nvmrc`.
+Package manager is pnpm 11.23.0 via corepack (`packageManager` in package.json); Node is pinned to 24.19.0 in `.nvmrc`. Both are floors, not preferences: pnpm 11 needs Node >= 22.13 and `@changesets/cli` 3 needs `^22.11 || ^24 || >=26`.
+
+pnpm 10+ blocks dependency build scripts unless approved, and pnpm 11 reads settings from `pnpm-workspace.yaml` (**not** the `pnpm` field in package.json, which it silently ignores). `allowBuilds` there approves `@swc/core` and `esbuild`; without it `pnpm install` fails with `ERR_PNPM_IGNORED_BUILDS`. `pnpm approve-builds --all` rewrites that file for you.
 
 ```bash
 pnpm build      # tsup: src/**/*.ts -> lib/ (code-split, cleans lib/ first)
@@ -37,15 +39,26 @@ Two stages, and the order is load-bearing: `ncc` has no entry argument, so it re
 
 Consequence: **any change under `src/` must be followed by `pnpm build && pnpm package`, with the resulting `dist/` committed.** Nothing enforces this — `test.yml` and `release.yml` both go install → run, with no build step and no `git diff --exit-code dist`. A stale bundle ships silently while CI stays green.
 
-`action.yml` pins `using: 'node16'` (the runner's runtime for the bundle) independently of `.nvmrc` (the local/CI dev toolchain).
+`action.yml` pins `using: 'node24'` (the runner's runtime for the bundle) independently of `.nvmrc` (the local/CI dev toolchain). They are pinned separately, so bumping one does not bump the other.
 
 ## Tests
 
-Vitest with `globals: true` (`vitest.config.ts`) plus `types: ["vitest/globals"]` in tsconfig — test files use `describe`/`it`/`expect` **without importing them**. Coverage is `enabled: true` in config, so it runs on every invocation, scoped to `src/**/*.ts`.
+Vitest with `globals: true` (`vitest.config.ts`) plus `types: ["vitest/globals", "node"]` in tsconfig — test files use `describe`/`it`/`expect` **without importing them**. Coverage is `enabled: true` in config, so it runs on every invocation, scoped to `src/**/*.ts`.
 
 `__tests__/main.test.ts` is `describe.skip` and shells out to `lib/main.js` (a build artifact), so it only works after `pnpm build`. Real coverage is `utils.test.ts` alone.
 
-Lint/prettier/tsconfig all come from the external `@web-configs/*` packages; local overrides are the few rules in `.eslintrc.js`.
+## Lint and types
+
+ESLint uses **flat config** (`eslint.config.js`, CJS — the repo is not `type: module`): `@eslint/js` recommended + `typescript-eslint` v8 + `eslint-config-prettier`. There is no `.eslintrc.js`/`.eslintignore`; ignores live in the config's first block.
+
+`@web-configs/eslint-plugin` was removed — it is unmaintained (0.5.2, peer `eslint: ^8.46.0`) and its bundled `@typescript-eslint` v6 parser crashes on ESLint 10 (`scopeManager.addGlobals is not a function`). `@web-configs/prettier` (prettier config) and `@web-configs/typescript` (tsconfig base) are still used.
+
+Two upgrade constraints worth knowing before bumping either package:
+
+- **TypeScript is held at 5.9.3** even though 7.x is latest. `typescript-eslint` peers on `typescript: >=4.8.4 <6.1.0` (canary included), so TS 7 means no TypeScript-aware linting at all.
+- **`@actions/core` is held at 2.x** even though 3.x is latest. v3 is ESM-only and `ncc` emits CJS only, so `pnpm package` fails outright. Moving to v3 requires replacing ncc with an ESM bundler.
+
+Nothing in the build type-checks — tsup transpiles via esbuild. Run `pnpm exec tsc --noEmit` explicitly when types matter.
 
 ## Releases: changesets → tag → major re-tag
 
