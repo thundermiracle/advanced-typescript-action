@@ -1,5 +1,5 @@
-import * as cp from 'child_process';
-import * as path from 'path';
+import * as cp from 'node:child_process';
+import * as path from 'node:path';
 
 describe.skip('main', () => {
   // shows how the runner will run a javascript action with env / stdout protocol

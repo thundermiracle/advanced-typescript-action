@@ -17,9 +17,11 @@ pnpm 10+ blocks dependency build scripts unless approved, and pnpm 11 reads sett
 ```bash
 pnpm build      # tsup: bundles src/main.ts -> dist/index.mjs (ESM, deps inlined)
 pnpm test       # lint -> typecheck -> vitest run (coverage always on)
-pnpm lint       # eslint only
+pnpm lint       # biome lint only
+pnpm check      # biome check --write: lint fixes + format + import sorting
+pnpm check:ci   # biome ci --error-on-warnings (what CI gates on)
 pnpm typecheck  # tsc --noEmit, on TypeScript 7
-pnpm format     # prettier --write '**/*.ts'
+pnpm format     # biome format --write
 pnpm all        # build -> format -> test (the full pre-commit chain)
 ```
 
@@ -54,30 +56,16 @@ Vitest with `globals: true` (`vitest.config.ts`) plus `types: ["vitest/globals",
 
 ## Lint and types
 
-### The TypeScript alias inversion — read this before touching `typescript`
+Linting and formatting are both **Biome** (`biome.json`). Biome is a single Rust binary with its own TypeScript parser — it has **no dependency on the `typescript` package**, which is the whole reason `typescript` can sit at a plain `^7.0.2` here. ESLint, typescript-eslint, Prettier, `eslint-config-prettier`, `@eslint/js` and `@web-configs/prettier` were all removed; so were `.eslintrc.js`, `.eslintignore`, `eslint.config.js` and `.prettierignore`.
 
-`package.json` looks like TypeScript was downgraded. It was not:
+**The one trap: Biome's `recommended` rules are warnings, and `biome lint` exits 0 on warnings.** A plain `biome lint` in CI silently passes with real findings. Hence `--error-on-warnings` everywhere it gates:
 
-```json
-"@typescript/native": "npm:typescript@^7.0.2",
-"typescript": "npm:@typescript/typescript6@^6.0.2"
-```
+- `pnpm check:ci` → `biome ci --error-on-warnings` — verifies lint **and** formatting **and** import order without writing. This is what `pnpm test` runs, so CI now gates formatting, which the old eslint-only `test` script never did.
+- `pnpm check` → `biome check --write` is the local autofix counterpart.
 
-This is the TypeScript team's documented side-by-side setup. typescript-eslint hard-throws `typescript-eslint does not support TS 7.0` on import, so the package *named* `typescript` has to resolve to the 6.0 API for the linter, while TS 7 is installed under a different name and still owns the `tsc` binary. Net effect:
-
-- `pnpm exec tsc` → 7.0.2 (what `pnpm typecheck` runs)
-- `require('typescript')` → 6.0.3 (what typescript-eslint parses with)
-- `pnpm exec tsc6` → 6.0.3
-
-Linting here is **not** type-aware (`tseslint.configs.recommended`, no `parserOptions.project`), so the parser only reads syntax and the 6-vs-7 split costs nothing. Collapse this back to a plain `typescript` dependency once typescript-eslint supports TS >= 7.1 (typescript-eslint#10940).
-
-### Config
-
-ESLint uses **flat config** (`eslint.config.js`, ESM — the repo is `type: module`): `@eslint/js` recommended + `typescript-eslint` v8 + `eslint-config-prettier`. There is no `.eslintrc.js`/`.eslintignore`; ignores live in the config's first block.
+Formatter settings in `biome.json` reproduce the old `@web-configs/prettier` config exactly (lf, 2-space, single quotes, semicolons, trailing commas, bracket spacing) — the migration reformatted zero existing files.
 
 `tsconfig.json` is self-contained. `@web-configs/typescript` was dropped because its base sets `baseUrl` and `moduleResolution: node`, both removed in TS 7, and an extended config cannot un-set them from the child. `moduleResolution` is `bundler` on purpose — `nodenext` would reject the extensionless relative import in `src/main.ts`.
-
-`@web-configs/prettier` is still used. `@web-configs/eslint-plugin` was removed earlier (unmaintained, incompatible with ESLint 10).
 
 The build does **not** type-check — tsup transpiles via esbuild. `pnpm typecheck` is wired into `pnpm test`, so CI covers it.
 

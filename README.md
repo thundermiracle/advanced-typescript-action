@@ -15,7 +15,7 @@ All these chores are repetitive and boring without automation. So I created this
 ### basic features
 
 - [x] TypeScript
-- [x] ESLint with prettier
+- [x] [Biome](https://biomejs.dev/) for linting & formatting (one Rust binary, no TypeScript coupling)
 - [x] Using [`tsup`](https://github.com/egoist/tsup) to bundle everything into a single ESM file (`dist/index.mjs`)
 
 ### test
