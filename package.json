@@ -6,12 +6,14 @@
   "type": "module",
   "packageManager": "pnpm@11.23.0",
   "scripts": {
-    "format": "prettier --write '**/*.ts'",
-    "lint": "eslint src/**/*.ts",
+    "lint": "biome lint --error-on-warnings",
+    "format": "biome format --write",
+    "check": "biome check --write",
+    "check:ci": "biome ci --error-on-warnings",
     "typecheck": "tsc --noEmit",
-    "test": "pnpm lint && pnpm typecheck && vitest run",
+    "test": "pnpm check:ci && pnpm typecheck && vitest run",
     "build": "tsup",
-    "all": "pnpm build && pnpm format && pnpm test",
+    "all": "pnpm build && pnpm check && pnpm test",
     "cs:version": "changeset version",
     "cs:tag": "changeset tag"
   },
@@ -19,21 +21,14 @@
     "@actions/core": "^3.0.1"
   },
   "devDependencies": {
+    "@biomejs/biome": "^2.5.10",
     "@changesets/changelog-github": "^1.0.0",
     "@changesets/cli": "^3.0.1",
-    "@eslint/js": "^10.0.1",
     "@swc/core": "^1.16.1",
     "@types/node": "^24.13.3",
-    "@typescript/native": "npm:typescript@^7.0.2",
     "@vitest/coverage-v8": "^4.1.11",
-    "@web-configs/prettier": "^0.1.2",
-    "eslint": "^10.9.0",
-    "eslint-config-prettier": "^10.1.8",
-    "prettier": "^3.9.6",
     "tsup": "^8.5.1",
-    "typescript": "npm:@typescript/typescript6@^6.0.2",
-    "typescript-eslint": "^8.67.0",
+    "typescript": "^7.0.2",
     "vitest": "^4.1.11"
-  },
-  "prettier": "@web-configs/prettier"
+  }
 }
