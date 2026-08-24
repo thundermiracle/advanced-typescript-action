@@ -16,7 +16,7 @@ All these chores are repetitive and boring without automation. So I created this
 
 - [x] TypeScript
 - [x] ESLint with prettier
-- [x] Using [`tsup`](https://github.com/egoist/tsup) to build & [`ncc`](https://github.com/vercel/ncc) to bundle
+- [x] Using [`tsup`](https://github.com/egoist/tsup) to bundle everything into a single ESM file (`dist/index.mjs`)
 
 ### test
 
