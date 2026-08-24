@@ -6,7 +6,7 @@ describe.skip('main', () => {
   it('test runs', () => {
     process.env.INPUT_MILLISECONDS = '500';
     const np = process.execPath;
-    const ip = path.join(__dirname, '..', 'lib', 'main.js');
+    const ip = path.join(import.meta.dirname, '..', 'dist', 'index.mjs');
     const options: cp.ExecFileSyncOptions = {
       env: process.env,
     };

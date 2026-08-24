@@ -7,7 +7,6 @@ export default defineConfig({
     reporters: 'verbose',
     globals: true,
     coverage: {
-      all: true,
       enabled: true,
       provider: 'v8',
       reporter: ['text', 'json', 'lcov'],

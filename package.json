@@ -3,20 +3,20 @@
   "version": "0.1.0",
   "author": "thundermiracle",
   "license": "MIT",
+  "type": "module",
   "packageManager": "pnpm@11.23.0",
-  "main": "lib/main.js",
   "scripts": {
     "format": "prettier --write '**/*.ts'",
     "lint": "eslint src/**/*.ts",
-    "test": "pnpm lint && vitest run",
+    "typecheck": "tsc --noEmit",
+    "test": "pnpm lint && pnpm typecheck && vitest run",
     "build": "tsup",
-    "package": "ncc build --source-map --license licenses.txt",
-    "all": "pnpm build && pnpm format && pnpm test && pnpm package",
+    "all": "pnpm build && pnpm format && pnpm test",
     "cs:version": "changeset version",
     "cs:tag": "changeset tag"
   },
   "dependencies": {
-    "@actions/core": "^2.0.3"
+    "@actions/core": "^3.0.1"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^1.0.0",
@@ -24,25 +24,16 @@
     "@eslint/js": "^10.0.1",
     "@swc/core": "^1.16.1",
     "@types/node": "^24.13.3",
-    "@vercel/ncc": "^0.45.0",
+    "@typescript/native": "npm:typescript@^7.0.2",
     "@vitest/coverage-v8": "^4.1.11",
     "@web-configs/prettier": "^0.1.2",
-    "@web-configs/typescript": "^0.2.2",
     "eslint": "^10.9.0",
     "eslint-config-prettier": "^10.1.8",
     "prettier": "^3.9.6",
     "tsup": "^8.5.1",
-    "typescript": "^5.9.3",
+    "typescript": "npm:@typescript/typescript6@^6.0.2",
     "typescript-eslint": "^8.67.0",
     "vitest": "^4.1.11"
   },
-  "prettier": "@web-configs/prettier",
-  "tsup": {
-    "entry": [
-      "src/**/*.ts"
-    ],
-    "outDir": "lib",
-    "splitting": true,
-    "clean": true
-  }
+  "prettier": "@web-configs/prettier"
 }

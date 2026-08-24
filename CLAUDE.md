@@ -15,12 +15,12 @@ Package manager is pnpm 11.23.0 via corepack (`packageManager` in package.json);
 pnpm 10+ blocks dependency build scripts unless approved, and pnpm 11 reads settings from `pnpm-workspace.yaml` (**not** the `pnpm` field in package.json, which it silently ignores). `allowBuilds` there approves `@swc/core` and `esbuild`; without it `pnpm install` fails with `ERR_PNPM_IGNORED_BUILDS`. `pnpm approve-builds --all` rewrites that file for you.
 
 ```bash
-pnpm build      # tsup: src/**/*.ts -> lib/ (code-split, cleans lib/ first)
-pnpm package    # ncc: bundles lib/main.js -> dist/index.js (+ sourcemap, licenses.txt)
-pnpm test       # eslint src/**/*.ts, THEN vitest run (coverage always on)
+pnpm build      # tsup: bundles src/main.ts -> dist/index.mjs (ESM, deps inlined)
+pnpm test       # lint -> typecheck -> vitest run (coverage always on)
 pnpm lint       # eslint only
+pnpm typecheck  # tsc --noEmit, on TypeScript 7
 pnpm format     # prettier --write '**/*.ts'
-pnpm all        # build -> format -> test -> package (the full pre-commit chain)
+pnpm all        # build -> format -> test (the full pre-commit chain)
 ```
 
 Single test file / single test — `pnpm test` lints first and can't take a filter, so call vitest directly:
@@ -33,11 +33,16 @@ pnpm exec vitest            # watch mode
 
 ## Build chain and the committed `dist/`
 
-Two stages, and the order is load-bearing: `ncc` has no entry argument, so it resolves package.json's `main` (`lib/main.js`), which only exists after `tsup` has run. **`pnpm package` requires a prior `pnpm build`.**
+One stage: `tsup` (config in `tsup.config.ts`) bundles `src/main.ts` and every dependency into `dist/index.mjs`. The repo is `"type": "module"`, and `@actions/core` v3 is ESM-only, so the output is ESM.
 
-`lib/` is gitignored; **`dist/` is committed** (marked generated in `.gitattributes`) because `action.yml` runs `dist/index.js` directly on the runner with no install step.
+Two non-obvious bits of `tsup.config.ts` that must not be dropped:
 
-Consequence: **any change under `src/` must be followed by `pnpm build && pnpm package`, with the resulting `dist/` committed.** Nothing enforces this — `test.yml` and `release.yml` both go install → run, with no build step and no `git diff --exit-code dist`. A stale bundle ships silently while CI stays green.
+- `noExternal: [/.*/]` — the action runs straight from `dist/` with no install step, so nothing may stay external.
+- the `createRequire` banner — CJS transitive deps (e.g. `tunnel`) call `require()` for node builtins, which throws `Dynamic require of "net" is not supported` in an ESM bundle without it.
+
+**`dist/` is committed** (marked generated in `.gitattributes`) because `action.yml` runs `dist/index.mjs` directly on the runner.
+
+Consequence: **any change under `src/` must be followed by `pnpm build`, with the resulting `dist/` committed.** Nothing enforces this — `test.yml` and `release.yml` both go install → run, with no build step and no `git diff --exit-code dist`. A stale bundle ships silently while CI stays green.
 
 `action.yml` pins `using: 'node24'` (the runner's runtime for the bundle) independently of `.nvmrc` (the local/CI dev toolchain). They are pinned separately, so bumping one does not bump the other.
 
@@ -49,16 +54,32 @@ Vitest with `globals: true` (`vitest.config.ts`) plus `types: ["vitest/globals",
 
 ## Lint and types
 
-ESLint uses **flat config** (`eslint.config.js`, CJS — the repo is not `type: module`): `@eslint/js` recommended + `typescript-eslint` v8 + `eslint-config-prettier`. There is no `.eslintrc.js`/`.eslintignore`; ignores live in the config's first block.
+### The TypeScript alias inversion — read this before touching `typescript`
 
-`@web-configs/eslint-plugin` was removed — it is unmaintained (0.5.2, peer `eslint: ^8.46.0`) and its bundled `@typescript-eslint` v6 parser crashes on ESLint 10 (`scopeManager.addGlobals is not a function`). `@web-configs/prettier` (prettier config) and `@web-configs/typescript` (tsconfig base) are still used.
+`package.json` looks like TypeScript was downgraded. It was not:
 
-Two upgrade constraints worth knowing before bumping either package:
+```json
+"@typescript/native": "npm:typescript@^7.0.2",
+"typescript": "npm:@typescript/typescript6@^6.0.2"
+```
 
-- **TypeScript is held at 5.9.3** even though 7.x is latest. `typescript-eslint` peers on `typescript: >=4.8.4 <6.1.0` (canary included), so TS 7 means no TypeScript-aware linting at all.
-- **`@actions/core` is held at 2.x** even though 3.x is latest. v3 is ESM-only and `ncc` emits CJS only, so `pnpm package` fails outright. Moving to v3 requires replacing ncc with an ESM bundler.
+This is the TypeScript team's documented side-by-side setup. typescript-eslint hard-throws `typescript-eslint does not support TS 7.0` on import, so the package *named* `typescript` has to resolve to the 6.0 API for the linter, while TS 7 is installed under a different name and still owns the `tsc` binary. Net effect:
 
-Nothing in the build type-checks — tsup transpiles via esbuild. Run `pnpm exec tsc --noEmit` explicitly when types matter.
+- `pnpm exec tsc` → 7.0.2 (what `pnpm typecheck` runs)
+- `require('typescript')` → 6.0.3 (what typescript-eslint parses with)
+- `pnpm exec tsc6` → 6.0.3
+
+Linting here is **not** type-aware (`tseslint.configs.recommended`, no `parserOptions.project`), so the parser only reads syntax and the 6-vs-7 split costs nothing. Collapse this back to a plain `typescript` dependency once typescript-eslint supports TS >= 7.1 (typescript-eslint#10940).
+
+### Config
+
+ESLint uses **flat config** (`eslint.config.js`, ESM — the repo is `type: module`): `@eslint/js` recommended + `typescript-eslint` v8 + `eslint-config-prettier`. There is no `.eslintrc.js`/`.eslintignore`; ignores live in the config's first block.
+
+`tsconfig.json` is self-contained. `@web-configs/typescript` was dropped because its base sets `baseUrl` and `moduleResolution: node`, both removed in TS 7, and an extended config cannot un-set them from the child. `moduleResolution` is `bundler` on purpose — `nodenext` would reject the extensionless relative import in `src/main.ts`.
+
+`@web-configs/prettier` is still used. `@web-configs/eslint-plugin` was removed earlier (unmaintained, incompatible with ESLint 10).
+
+The build does **not** type-check — tsup transpiles via esbuild. `pnpm typecheck` is wired into `pnpm test`, so CI covers it.
 
 ## Releases: changesets → tag → major re-tag
 
