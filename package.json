@@ -4,7 +4,7 @@
   "author": "thundermiracle",
   "license": "MIT",
   "type": "module",
-  "packageManager": "pnpm@11.25.0",
+  "packageManager": "pnpm@11.28.5",
   "scripts": {
     "format": "prettier --write '**/*.ts'",
     "lint": "eslint src/**/*.ts",
@@ -19,11 +19,11 @@
     "@actions/core": "^3.0.1"
   },
   "devDependencies": {
-    "@changesets/changelog-github": "^1.0.0",
-    "@changesets/cli": "^3.0.1",
+    "@changesets/changelog-github": "^1.0.1",
+    "@changesets/cli": "^3.0.3",
     "@eslint/js": "^10.0.1",
-    "@swc/core": "^1.16.1",
-    "@types/node": "^24.13.3",
+    "@swc/core": "^1.16.13",
+    "@types/node": "^24.19.2",
     "@typescript/native": "npm:typescript@^7.0.2",
     "@vitest/coverage-v8": "^4.1.11",
     "@web-configs/prettier": "^0.1.2",
