@@ -23,7 +23,7 @@
     "@changesets/cli": "^3.0.3",
     "@eslint/js": "^10.0.1",
     "@swc/core": "^1.16.22",
-    "@types/node": "^24.19.2",
+    "@types/node": "^26.6.11",
     "@typescript/native": "npm:typescript@^7.0.2",
     "@vitest/coverage-v8": "^5.1.0",
     "@web-configs/prettier": "^0.1.2",
